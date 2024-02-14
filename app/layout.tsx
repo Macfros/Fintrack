@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Merriweather, Kanit } from "next/font/google";
 import "./globals.css";
+import Provider from "@/context/Provider";
+import NavbarApp from "@/app/components/navbar/NavbarApp";
+import {cn} from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-merriweather",
+});
+const kanit = Merriweather({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-kanit",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(`${merriweather.variable} ${kanit.variable}`)}>
+        <Provider>
+          <NavbarApp />
+          {children}
+        </Provider>
+      </body>
     </html>
   );
 }
